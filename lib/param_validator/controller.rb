@@ -21,6 +21,7 @@ module ParamValidator
         raise ParamValidator::InvalidParameters.new( validator.full_errors.join( ', '))
       end
     rescue NameError => e
+      raise if e.is_a?( NoMethodError )
       raise NotImplementedError,
             "please implement #{klass_name} param validator"
             e.backtrace

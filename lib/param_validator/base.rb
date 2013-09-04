@@ -1,10 +1,18 @@
 module ParamValidator
   class Base
 
+    class_attribute :specification
+    self.specification = {}
+
     attr_reader :params
 
     def initialize( params )
       @params = params
+    end
+
+    def self.inherited( base )
+      self.specification = {}
+      super
     end
 
     def valid?
@@ -28,12 +36,8 @@ module ParamValidator
       end
     end
 
-    def self.specification
-      @@specification ||= {}
-    end
-
     def self.validate( param, spec )
-      specification[param] = spec
+      self.specification = specification.merge( param => spec )
     end
 
   private
