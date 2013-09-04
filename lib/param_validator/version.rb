@@ -1,3 +1,3 @@
 module ParamValidator
-  VERSION = "1.2.0"
+  VERSION = "0.9.0"
 end
