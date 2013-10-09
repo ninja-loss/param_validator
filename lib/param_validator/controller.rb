@@ -14,7 +14,7 @@ module ParamValidator
     end
 
     def validate_parameters
-      klass_name = [self.class.name.gsub( /Controller/, '' ), "#{action_name.titlecase}ParamValidator"].join( '::' )
+      klass_name = [self.class.name.gsub( /Controller/, '' ), "#{action_name.camelize}ParamValidator"].join( '::' )
       klass = klass_name.constantize
       validator = klass.new( params )
       unless validator.valid?
